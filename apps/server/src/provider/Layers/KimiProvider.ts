@@ -111,7 +111,7 @@ export function buildInitialKimiProviderSnapshot(
           version: null,
           status: "warning",
           auth: { status: "unknown" },
-          message: "Kimi is disabled in T3 Code settings.",
+          message: "Kimi is disabled in Platon Code settings.",
         },
       });
     }
@@ -318,7 +318,7 @@ export const checkKimiProviderStatus = Effect.fn("checkKimiProviderStatus")(func
         version: null,
         status: "warning",
         auth: { status: "unknown" },
-        message: "Kimi is disabled in T3 Code settings.",
+        message: "Kimi is disabled in Platon Code settings.",
       },
     });
   }

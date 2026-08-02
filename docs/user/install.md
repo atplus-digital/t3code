@@ -11,11 +11,35 @@ At least one provider CLI, installed and authenticated. See [Providers](#provide
 ## Run Without Installing
 
 ```bash
-npx platon@latest
+npx platon-code@latest
 ```
 
 This starts the Platon Code server on your machine and opens the local web app. Use
-`npx platon@latest --help` for the full CLI reference.
+`npx platon-code@latest --help` for the full CLI reference.
+
+The CLI binary is still invoked as `platon` after install (`npx platon-code` runs the
+`platon` bin from the `platon-code` package).
+
+## Data directory (migrating from T3 Code)
+
+Platon Code stores runtime state under `~/.platon` (or `PLATON_CODE_HOME`). It does **not**
+automatically read `~/.t3` or `T3CODE_*` from an upstream T3 Code install. That is an intentional
+hard break for this fork.
+
+To copy an existing T3 Code database into Platon Code (with no server using the source file):
+
+```bash
+mkdir -p ~/.platon/userdata
+# Prefer VACUUM INTO while a T3 server may have the source open:
+#   bun -e "new (require('bun:sqlite').Database)(process.env.HOME + '/.t3/userdata/state.sqlite', { readonly: true }).run(\"VACUUM INTO '\" + process.env.HOME + \"/.platon/userdata/state.sqlite'\")"
+# Or, when nothing has the source open:
+cp -R ~/.t3/userdata/. ~/.platon/userdata/
+# Optional: copy secrets/settings if you need the same credentials/preferences
+# cp ~/.t3/secrets ~/.platon/ 2>/dev/null || true
+# cp ~/.t3/settings.json ~/.platon/ 2>/dev/null || true
+```
+
+Project files are named `platon.json` (not `t3.json`). Rename per project if you still have the old file.
 
 ## Desktop App
 

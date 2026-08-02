@@ -78,7 +78,7 @@ export class NoRunningServerError extends Schema.TaggedErrorClass<NoRunningServe
     return [
       "No running Platon Code server found.",
       ...this.checkedStatePaths.map((statePath) => `  checked ${statePath}`),
-      "Start one with `npx platon serve`, or connect this machine with Platon Connect: `npx platon connect`.",
+      "Start one with `npx platon-code serve`, or connect this machine with Platon Connect: `npx platon-code connect`.",
     ].join("\n");
   }
 }

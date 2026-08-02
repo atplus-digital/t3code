@@ -91,7 +91,7 @@ it.layer(NodeServices.layer)("dev-runner", (it) => {
           "run",
           "--filter=@platon/contracts",
           "--filter=@platon/web",
-          "--filter=platon",
+          "--filter=platon-code",
           "--parallel",
           "dev",
         ]);

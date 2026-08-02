@@ -79,7 +79,7 @@ You do not need any extra env vars. Just run the app normally and inspect `serve
 Examples:
 
 ```bash
-npx platon
+npx platon-code
 ```
 
 ```bash
@@ -130,7 +130,7 @@ export PLATON_CODE_TRACE_TIMING_ENABLED=true
 CLI:
 
 ```bash
-npx platon
+npx platon-code
 ```
 
 Monorepo web/server dev:

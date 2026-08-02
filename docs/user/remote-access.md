@@ -7,7 +7,7 @@ Use this when you want to connect to a Platon Code server from another device su
 If a server is already running on this machine, mint a fresh pairing token and QR code without restarting anything:
 
 ```bash
-npx platon pair
+npx platon-code pair
 ```
 
 `platon pair` finds the running server (the shared `~/.platon` install, or the current worktree's dev server when run inside one), issues a one-time pairing token, and prints the pairing URL as a QR code you can scan from your phone.
@@ -15,12 +15,12 @@ npx platon pair
 If the server is only bound to loopback, the printed URL is not reachable from another device. Pair over your tailnet instead:
 
 ```bash
-npx platon pair --tailscale
+npx platon-code pair --tailscale
 ```
 
 This publishes the server over Tailscale Serve HTTPS (configuring the mapping if needed — it persists until you run `tailscale serve --https=443 off`) and pairs through the `https://machine.tailnet.ts.net/` URL. Use `--tailscale-serve-port` for a different HTTPS port, `--ttl` to change the token lifetime, and `--base-dir` to target a specific data directory.
 
-If no server is running, `platon pair` says so and points you at `npx platon serve` or `npx platon connect`.
+If no server is running, `platon pair` says so and points you at `npx platon-code serve` or `npx platon-code connect`.
 
 ## Recommended Setup
 
@@ -87,7 +87,7 @@ Use this when you want to run the server without a GUI, for example on a remote 
 Run the server with `platon serve`.
 
 ```bash
-npx platon serve --host "$(tailscale ip -4)"
+npx platon-code serve --host "$(tailscale ip -4)"
 ```
 
 `platon serve` starts the server without opening a browser and prints:
@@ -109,14 +109,14 @@ Use `platon serve --help` for the full flag reference. It supports the same gene
 For hosted web pairing over Tailscale HTTPS, opt in to Tailscale Serve:
 
 ```bash
-npx platon serve --tailscale-serve
+npx platon-code serve --tailscale-serve
 ```
 
 By default this configures Tailscale Serve on HTTPS port 443 and advertises
 `https://machine.tailnet.ts.net/`. Advanced users can choose a different HTTPS port:
 
 ```bash
-npx platon serve --tailscale-serve --tailscale-serve-port 8443
+npx platon-code serve --tailscale-serve --tailscale-serve-port 8443
 ```
 
 Once paired, add projects normally: open the Command Palette and choose **Add Project**, then pick

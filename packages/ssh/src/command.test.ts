@@ -99,21 +99,21 @@ describe("ssh command", () => {
     }),
   );
 
-  it.effect("resolves the remote t3 package spec from the desktop release channel", () =>
+  it.effect("resolves the remote platon-code package spec from the desktop release channel", () =>
     Effect.sync(() => {
       assert.equal(
         resolveRemotePlatonCliPackageSpec({
           appVersion: "0.0.17",
           updateChannel: "latest",
         }),
-        "t3@0.0.17",
+        "platon-code@0.0.17",
       );
       assert.equal(
         resolveRemotePlatonCliPackageSpec({
           appVersion: "0.0.17-nightly.20260415.44",
           updateChannel: "nightly",
         }),
-        "t3@0.0.17-nightly.20260415.44",
+        "platon-code@0.0.17-nightly.20260415.44",
       );
       assert.equal(
         resolveRemotePlatonCliPackageSpec({
@@ -121,7 +121,7 @@ describe("ssh command", () => {
           updateChannel: "nightly",
           isDevelopment: true,
         }),
-        "platon@nightly",
+        "platon-code@nightly",
       );
       assert.equal(
         resolveRemotePlatonCliPackageSpec({
@@ -129,7 +129,7 @@ describe("ssh command", () => {
           updateChannel: "latest",
           isDevelopment: true,
         }),
-        "platon@nightly",
+        "platon-code@nightly",
       );
     }),
   );

@@ -206,8 +206,8 @@ describe("platon pair", () => {
         typeof error === "object" && error !== null && "cause" in error ? error.cause : error,
       );
       assert.include(rendered, "No running Platon Code server found.");
-      assert.include(rendered, "npx platon serve");
-      assert.include(rendered, "npx platon connect");
+      assert.include(rendered, "npx platon-code serve");
+      assert.include(rendered, "npx platon-code connect");
     }).pipe(Effect.provide(NodeServices.layer)),
   );
 

@@ -601,7 +601,7 @@ sequenceDiagram
   CLI->>Clerk: Browser PKCE authorization-code flow
   Clerk-->>CLI: OAuth access and refresh tokens
   CLI->>CLI: Persist desired cloud-link state
-  U->>S: Start T3 environment server
+  U->>S: Start Platon Code environment server
   S->>R: Create challenge and submit local signed proof
   R-->>S: Managed endpoint config and connector token
   S->>RC: Start relay client

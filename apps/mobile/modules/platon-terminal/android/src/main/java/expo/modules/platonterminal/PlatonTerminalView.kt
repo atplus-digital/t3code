@@ -39,7 +39,7 @@ class PlatonTerminalView(context: Context, appContext: AppContext) : ExpoView(co
     set(value) {
       if (field == value) return
       field = value
-      contentDescription = "t3-terminal-$value"
+      contentDescription = "platon-terminal-$value"
       recreateTerminal()
     }
 

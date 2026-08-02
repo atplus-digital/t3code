@@ -76,11 +76,11 @@ const MODE_ARGS = {
     "run",
     "--filter=@platon/contracts",
     "--filter=@platon/web",
-    "--filter=platon",
+    "--filter=platon-code",
     "--parallel",
     "dev",
   ],
-  "dev:server": ["run", "--filter=platon", "dev"],
+  "dev:server": ["run", "--filter=platon-code", "dev"],
   "dev:web": ["run", "--filter=@platon/web", "dev"],
   "dev:desktop": ["run", "--filter=@platon/desktop", "--filter=@platon/web", "dev"],
 } as const satisfies Record<string, ReadonlyArray<string>>;
@@ -844,7 +844,7 @@ const devRunnerCli = Command.make("dev-runner", {
   ),
   platonHome: Flag.string("home-dir").pipe(
     Flag.withDescription(
-      "Explicit Platon Code data directory; runtime state is stored under userdata (equivalent to PLATON_CODE_HOME). Inside a git worktree this defaults to that worktree's own .t3 so dev state stays off the shared home.",
+      "Explicit Platon Code data directory; runtime state is stored under userdata (equivalent to PLATON_CODE_HOME). Inside a git worktree this defaults to that worktree's own .platon so dev state stays off the shared home.",
     ),
     Flag.optional,
     Flag.map(Option.getOrUndefined),

@@ -40,7 +40,7 @@ it.layer(NodeServices.layer)("service update preflight", (it) => {
       });
       expect(blocked.status).toBe("blocked");
       if (blocked.status === "blocked") {
-        expect(blocked.reason).toContain("npx platon@1.2.3 service update");
+        expect(blocked.reason).toContain("npx platon-code@1.2.3 service update");
       }
     }),
   );

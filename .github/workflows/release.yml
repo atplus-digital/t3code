@@ -293,7 +293,7 @@ jobs:
           cache: true
           run-install: |
             args:
-              - --filter=platon...
+              - --filter=platon-code...
 
       - name: Build node-pty linux-x64 prebuild
         shell: bash
@@ -389,7 +389,7 @@ jobs:
           run-install: |
             args:
               - --filter=@platon/desktop...
-              - --filter=platon...
+              - --filter=platon-code...
               - --filter=@platon/scripts...
 
       - name: Setup Rust
@@ -693,7 +693,7 @@ jobs:
           cache: true
           run-install: |
             args:
-              - --filter=platon...
+              - --filter=platon-code...
               - --filter=@platon/web...
               - --filter=@platon/scripts...
 
@@ -718,7 +718,7 @@ jobs:
         run: vp run --filter @platon/web build
 
       - name: Build CLI package
-        run: vp run --filter platon build
+        run: vp run --filter platon-code build
 
       - name: Download resource monitors
         uses: actions/download-artifact@v8

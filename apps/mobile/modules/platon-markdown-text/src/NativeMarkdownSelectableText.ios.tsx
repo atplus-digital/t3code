@@ -200,9 +200,9 @@ export function NativeMarkdownSelectableText(props: {
             key={key}
             nativeID={
               run.fileIcon
-                ? `t3-file:${Image.resolveAssetSource(markdownFileIconSource(run.fileIcon)).uri}`
+                ? `platon-file:${Image.resolveAssetSource(markdownFileIconSource(run.fileIcon)).uri}`
                 : run.skillName
-                  ? "t3-skill:sf:cube"
+                  ? "platon-skill:sf:cube"
                   : undefined
             }
             style={runStyle(run, props.textStyle)}

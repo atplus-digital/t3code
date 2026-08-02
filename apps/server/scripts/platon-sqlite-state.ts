@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// @effect-diagnostics nodeBuiltinImport:off - node:os resolves the shared T3 home guard.
+// @effect-diagnostics nodeBuiltinImport:off - node:os resolves the shared Platon home guard.
 import * as NodeRuntime from "@effect/platform-node/NodeRuntime";
 import * as NodeServices from "@effect/platform-node/NodeServices";
 import * as NodeOS from "node:os";
@@ -54,7 +54,7 @@ export class SqliteStateDatabaseMissingError extends Schema.TaggedErrorClass<Sql
   },
 ) {
   override get message(): string {
-    return `Database does not exist at '${this.databasePath}'. Start T3 once to run migrations.`;
+    return `Database does not exist at '${this.databasePath}'. Start Platon Code once to run migrations.`;
   }
 }
 

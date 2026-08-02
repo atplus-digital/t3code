@@ -59,7 +59,7 @@ export function resolveServerSelfUpdateCapability(
 
 /** The command to hand users whose server cannot update itself. */
 export function manualServerUpdateCommand(targetVersion: string): string {
-  return `npx platon@${targetVersion}`;
+  return `npx platon-code@${targetVersion}`;
 }
 
 /** One sentence telling the user how to resolve version skew for a server,

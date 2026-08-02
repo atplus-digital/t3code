@@ -9,8 +9,8 @@
 namespace facebook::react {
 
 static constexpr Float ParagraphStyleEncodingOffset = 1000;
-static constexpr auto FileAttachmentNativeIdPrefix = "t3-file:";
-static constexpr auto SkillAttachmentNativeIdPrefix = "t3-skill:";
+static constexpr auto FileAttachmentNativeIdPrefix = "platon-file:";
+static constexpr auto SkillAttachmentNativeIdPrefix = "platon-skill:";
 
 static void applyParagraphStyles(
     NSMutableAttributedString *attributedString,

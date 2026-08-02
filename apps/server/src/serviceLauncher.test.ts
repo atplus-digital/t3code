@@ -82,7 +82,7 @@ it.layer(NodeServices.layer)("service state persistence", (it) => {
       const root = yield* fs.makeTempDirectoryScoped({ prefix: "platon-service-launcher-stop-" });
       const statePath = path.join(root, "runtime", "service-state.json");
       const versionDir = path.join(root, "runtime", "versions", "1.0.0");
-      const entryPath = path.join(versionDir, "node_modules", "platon", "dist", "bin.mjs");
+      const entryPath = path.join(versionDir, "node_modules", "platon-code", "dist", "bin.mjs");
       yield* fs.makeDirectory(path.dirname(entryPath), { recursive: true });
       yield* fs.writeFileString(entryPath, "setInterval(() => {}, 1_000);\n");
       yield* fs.writeFileString(path.join(versionDir, ".install-complete"), "1.0.0\n");
@@ -122,7 +122,7 @@ if (context.update?.status === "pending") {
 `;
       for (const version of ["1.0.0", "1.1.0"]) {
         const versionDir = path.join(root, "runtime", "versions", version);
-        const entryPath = path.join(versionDir, "node_modules", "platon", "dist", "bin.mjs");
+        const entryPath = path.join(versionDir, "node_modules", "platon-code", "dist", "bin.mjs");
         yield* fs.makeDirectory(path.dirname(entryPath), { recursive: true });
         yield* fs.writeFileString(entryPath, childSource);
         yield* fs.writeFileString(path.join(versionDir, ".install-complete"), `${version}\n`);
@@ -169,7 +169,7 @@ if (context.update?.status === "pending") {
 `;
       for (const version of ["1.0.0", "1.1.0"]) {
         const versionDir = path.join(root, "runtime", "versions", version);
-        const entryPath = path.join(versionDir, "node_modules", "platon", "dist", "bin.mjs");
+        const entryPath = path.join(versionDir, "node_modules", "platon-code", "dist", "bin.mjs");
         yield* fs.makeDirectory(path.dirname(entryPath), { recursive: true });
         yield* fs.writeFileString(entryPath, childSource);
         yield* fs.writeFileString(path.join(versionDir, ".install-complete"), `${version}\n`);

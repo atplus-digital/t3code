@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Plan: seamless `npx platon connect` for remote boxes</title>
+<title>Plan: seamless `npx platon-code connect` for remote boxes</title>
 <style>
   :root {
     --bg: #000;
@@ -86,11 +86,11 @@
 <body>
 <main>
 
-<h1>Seamless <code>npx platon connect</code> for remote boxes</h1>
+<h1>Seamless <code>npx platon-code connect</code> for remote boxes</h1>
 <p class="sub">Design principle: <strong>the smallest diff that ships the UX.</strong> No relay/infra changes, no new backend surface, no new auth primitives &mdash; every step reuses code that already exists. One PR, built as four phases with clear commit boundaries &mdash; each phase compiles, passes tests, and leaves the product working, so the PR reviews commit-by-commit. (Phase 4, web-triggered update, is an optional follow-up PR.)</p>
 
 <div class="terminal">
-$ npx platon connect<br><br>
+$ npx platon-code connect<br><br>
 To set up Platon Connect, open this URL and sign in:<br>
 &nbsp;&nbsp;<span class="b">https://app.t3.codes/connect#B64URL_STATE_AND_CHALLENGE</span><br><br>
 Enter your authentication code: <span class="dim">[code]</span><br><br>
@@ -221,7 +221,7 @@ Run Platon Code in the background whenever this machine boots? (y/n): y<br><br>
 
 ~/.config/systemd/user/platon-code.service   &larr; ExecStart=/abs/path/node .../current/.../t3 serve
 loginctl enable-linger $USER            &larr; survives SSH logout / reboot</code></pre>
-<p class="kv">Why a real <code>npm install</code> and not "reuse the npx binary": the npx cache is ephemeral and <code>t3</code> ships native deps (<code>node-pty</code>, <code>@ff-labs/fff-node</code>) that need per-platform prebuilds. Why pinned and not <code>npx platon@latest</code> in the unit: a boot-time registry fetch means the box may simply not come up (network down, PATH-less systemd env, nvm). Deterministic boot; updates happen out-of-band (phase 4 follow-up) or by re-running <code>npx platon connect</code>.</p>
+<p class="kv">Why a real <code>npm install</code> and not "reuse the npx binary": the npx cache is ephemeral and <code>t3</code> ships native deps (<code>node-pty</code>, <code>@ff-labs/fff-node</code>) that need per-platform prebuilds. Why pinned and not <code>npx platon-code@latest</code> in the unit: a boot-time registry fetch means the box may simply not come up (network down, PATH-less systemd env, nvm). Deterministic boot; updates happen out-of-band (phase 4 follow-up) or by re-running <code>npx platon-code connect</code>.</p>
 
 <h2>Explicitly not doing</h2>
 <ul>

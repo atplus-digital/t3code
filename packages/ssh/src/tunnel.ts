@@ -445,8 +445,8 @@ PORT_FILE="$STATE_DIR/port"
 PID_FILE="$STATE_DIR/pid"
 MANAGED_FILE="$STATE_DIR/managed"
 LOG_FILE="$STATE_DIR/server.log"
-RUNNER_FILE="$STATE_DIR/run-t3.sh"
-RUNNER_NEXT="$STATE_DIR/run-t3.next.$$"
+RUNNER_FILE="$STATE_DIR/run-platon.sh"
+RUNNER_NEXT="$STATE_DIR/run-platon.next.$$"
 mkdir -p "$STATE_DIR"
 cleanup_runner_next() {
   rm -f "$RUNNER_NEXT"
@@ -579,7 +579,7 @@ if [ -z "$REMOTE_PORT" ]; then
   printf '%s\\n' "$REMOTE_PORT" >"$PORT_FILE"
   printf 'managed\\n' >"$MANAGED_FILE"
   if ! wait_ready "@@PLATON_READY_TIMEOUT_MS@@"; then
-    printf 'Remote T3 server did not become ready on 127.0.0.1:%s.\\n' "$REMOTE_PORT" >&2
+    printf 'Remote Platon Code server did not become ready on 127.0.0.1:%s.\\n' "$REMOTE_PORT" >&2
     tail -n 80 "$LOG_FILE" >&2 2>/dev/null || true
     kill "$REMOTE_PID" 2>/dev/null || true
     wait_for_pid_exit "$REMOTE_PID"
@@ -593,7 +593,7 @@ printf '{"remotePort":%s,"serverKind":"%s"}\\n' "$REMOTE_PORT" "\${REMOTE_MANAGE
 export const REMOTE_PAIRING_SCRIPT = `set -eu
 STATE_DIR="$HOME/.platon/ssh-launch/@@PLATON_STATE_KEY@@"
 DEFAULT_SERVER_HOME="$HOME/.platon"
-RUNNER_FILE="$STATE_DIR/run-t3.sh"
+RUNNER_FILE="$STATE_DIR/run-platon.sh"
 mkdir -p "$STATE_DIR"
 cat >"$RUNNER_FILE" <<'SH'
 @@PLATON_RUNNER_SCRIPT@@
@@ -631,7 +631,7 @@ fi
 `;
 
 export function buildRemotePlatonRunnerScript(input?: RemotePlatonRunnerOptions): string {
-  const packageSpec = shellSingleQuote(input?.packageSpec?.trim() || "platon@latest");
+  const packageSpec = shellSingleQuote(input?.packageSpec?.trim() || "platon-code@latest");
   const nodeScriptPath = input?.nodeScriptPath?.trim() || "";
   return stripTrailingNewlines(
     applyScriptPlaceholders(REMOTE_RUNNER_SCRIPT, {

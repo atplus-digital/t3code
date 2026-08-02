@@ -94,9 +94,9 @@ describe("ssh tunnel scripts", () => {
 
     assert.include(script, "PLATON_NODE_SCRIPT_PATH=''");
     assert.include(script, 'exec t3 "$@"');
-    assert.include(script, "exec npx --yes 'platon@latest' \"$@\"");
-    assert.include(script, "exec npm exec --yes 'platon@latest' -- \"$@\"");
-    assert.include(script, "could not install 'platon@latest'");
+    assert.include(script, "exec npx --yes 'platon-code@latest' \"$@\"");
+    assert.include(script, "exec npm exec --yes 'platon-code@latest' -- \"$@\"");
+    assert.include(script, "could not install 'platon-code@latest'");
     assert.include(script, 'prepend_path_if_dir "$HOME/.local/bin"');
     assert.include(script, `PLATON_NODE_ENGINE_RANGE='${TEST_NODE_ENGINE_RANGE}'`);
     assert.include(script, "remote_node_satisfies_engine()");
@@ -124,15 +124,15 @@ describe("ssh tunnel scripts", () => {
 
   it("shell-quotes package specs in the remote t3 runner", () => {
     const script = buildRemotePlatonRunnerScript({
-      packageSpec: "platon@nightly; touch /tmp/platon-owned",
+      packageSpec: "platon-code@nightly; touch /tmp/platon-owned",
     });
 
-    assert.include(script, "exec npx --yes 'platon@nightly; touch /tmp/platon-owned' \"$@\"");
+    assert.include(script, "exec npx --yes 'platon-code@nightly; touch /tmp/platon-owned' \"$@\"");
     assert.include(
       script,
-      "exec npm exec --yes 'platon@nightly; touch /tmp/platon-owned' -- \"$@\"",
+      "exec npm exec --yes 'platon-code@nightly; touch /tmp/platon-owned' -- \"$@\"",
     );
-    assert.notInclude(script, "exec npx --yes platon@nightly; touch /tmp/platon-owned");
+    assert.notInclude(script, "exec npx --yes platon-code@nightly; touch /tmp/platon-owned");
   });
 
   it("builds the remote t3 runner with a node script override", () => {
@@ -175,8 +175,11 @@ describe("ssh tunnel scripts", () => {
     assert.include(buildRemoteLaunchScript(), '"$RUNNER_FILE" serve --host 127.0.0.1');
     assert.include(buildRemoteLaunchScript(), '--base-dir "$DEFAULT_SERVER_HOME"');
     assert.notInclude(buildRemoteLaunchScript(), "server-home");
-    assert.include(buildRemoteLaunchScript(), "Remote T3 server did not become ready");
-    assert.include(buildRemoteLaunchScript({ packageSpec: "platon@nightly" }), "platon@nightly");
+    assert.include(buildRemoteLaunchScript(), "Remote Platon Code server did not become ready");
+    assert.include(
+      buildRemoteLaunchScript({ packageSpec: "platon-code@nightly" }),
+      "platon-code@nightly",
+    );
     assert.include(
       buildRemotePairingScript(target),
       '"$RUNNER_FILE" auth pairing create --base-dir "$PAIRING_BASE_DIR" --json',
@@ -184,8 +187,8 @@ describe("ssh tunnel scripts", () => {
     assert.include(buildRemotePairingScript(target), 'PAIRING_BASE_DIR="$DEFAULT_SERVER_HOME"');
     assert.notInclude(buildRemotePairingScript(target), "server-home");
     assert.include(
-      buildRemotePairingScript(target, { packageSpec: "platon@nightly" }),
-      "platon@nightly",
+      buildRemotePairingScript(target, { packageSpec: "platon-code@nightly" }),
+      "platon-code@nightly",
     );
     assert.include(
       buildRemoteStopScript(target),

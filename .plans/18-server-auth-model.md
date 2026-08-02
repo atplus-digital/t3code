@@ -571,7 +571,7 @@ T3Server -> T3Server : validate cookie session
 T3Server --> Frontend : websocket accepted
 ```
 
-### `npx platon` user
+### `npx platon-code` user
 
 This is the standalone local server flow.
 
@@ -579,7 +579,7 @@ There is no trusted desktop shell here, so pairing should be explicit.
 
 ```text
 Participants:
-  UserShell     = npx platon launcher
+  UserShell     = npx platon-code launcher
   T3Server      = standalone local server
   Browser       = browser tab
 

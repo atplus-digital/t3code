@@ -38,18 +38,18 @@ export function detectCliRunner(entryPath: string): CliRunner | null {
 
 /**
  * The `platon` package spec to suggest. The literal spec the user typed (e.g.
- * `platon@nightly`) is resolved away before our process starts, so re-derive it
+ * `platon-code@nightly`) is resolved away before our process starts, so re-derive it
  * from the running version: nightly builds re-suggest the nightly channel,
  * anything else suggests the bare package.
  */
 export function suggestedPackageSpec(version: string): string {
-  return version.includes("-nightly.") ? "platon@nightly" : "platon";
+  return version.includes("-nightly.") ? "platon-code@nightly" : "platon-code";
 }
 
 /**
  * Render a `platon <subcommand>` suggestion that matches how this process was
- * launched, so copy/pasting it actually works: `npx platon connect` suggests
- * `npx platon serve`, a global install suggests `platon serve`, and a nightly build
+ * launched, so copy/pasting it actually works: `npx platon-code connect` suggests
+ * `npx platon-code serve`, a global install suggests `platon serve`, and a nightly build
  * keeps the `@nightly` tag.
  */
 export function formatCliCommand(input: {

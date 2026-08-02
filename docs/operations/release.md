@@ -173,7 +173,7 @@ One-time Vercel dashboard setup:
 ## Server self-update release invariant
 
 Connected servers update to the client's exact version, not to an npm dist-tag. Every released
-desktop or hosted client version must therefore have a matching `t3@<version>` package available on
+desktop or hosted client version must therefore have a matching `platon-code@<version>` package available on
 npm before users can receive that client.
 
 The workflow enforces this ordering:
@@ -189,7 +189,7 @@ For a release smoke test, confirm `npm view platon@<version> version` returns th
 connect the new client to a server on the previous version and verify that the update action
 reconnects to the matching server. Use releases with identical migration manifests for the
 automatic path. When the manifest changed, verify that the remote action stops before restart and
-shows the exact local `npx platon@<version> service update` command. Also test the manual or
+shows the exact local `npx platon-code@<version> service update` command. Also test the manual or
 desktop-managed guidance when those environments are available.
 
 ## Desktop auto-update notes
@@ -216,7 +216,7 @@ desktop-managed guidance when those environments are available.
 ## 0) npm OIDC trusted publishing setup (CLI)
 
 The workflow invokes `node apps/server/scripts/cli.ts publish` after aligning package versions. That
-script temporarily prepares the `platon` package, then runs `vp pm publish --filter platon ...` from the
+script temporarily prepares the `platon-code` package, then runs `vp pm publish --filter platon-code ...` from the
 repository root so workspace publish configuration is applied correctly.
 
 Checklist:

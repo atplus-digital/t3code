@@ -8,25 +8,25 @@ boots and keeps running after you log out.
 Install it with the latest Platon Code release:
 
 ```sh
-npx platon@latest service install
+npx platon-code@latest service install
 ```
 
 Check whether it is installed:
 
 ```sh
-npx platon@latest service status
+npx platon-code@latest service status
 ```
 
 Update or repair it:
 
 ```sh
-npx platon@latest service update
+npx platon-code@latest service update
 ```
 
 Stop it and remove it from startup:
 
 ```sh
-npx platon@latest service uninstall
+npx platon-code@latest service uninstall
 ```
 
 Updating restarts Platon Code briefly. Let active agent work and terminal commands finish first.

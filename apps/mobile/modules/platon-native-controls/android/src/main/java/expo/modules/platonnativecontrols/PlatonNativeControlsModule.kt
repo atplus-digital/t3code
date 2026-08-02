@@ -14,7 +14,7 @@ class PlatonNativeControlsModule : Module() {
     Function("getShowcaseScene") {
       val storedScene = appContext.reactContext
         ?.filesDir
-        ?.resolve("t3-showcase-scene")
+        ?.resolve("platon-showcase-scene")
         ?.takeIf { it.isFile }
         ?.readText()
         ?.trim()
@@ -29,7 +29,7 @@ class PlatonNativeControlsModule : Module() {
     Function("markShowcaseReady") { scene: String ->
       appContext.reactContext
         ?.filesDir
-        ?.resolve("t3-showcase-ready")
+        ?.resolve("platon-showcase-ready")
         ?.writeText(scene)
     }
 

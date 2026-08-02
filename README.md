@@ -23,12 +23,12 @@ Brand marks live under [`assets/platon/`](./assets/platon/) and are applied acro
 The easiest way to test Platon Code is to run the server in your terminal (requires Node.js 22.16+, 23.11+, or 24.10+):
 
 ```bash
-npx platon@latest
+npx platon-code@latest
 ```
 
 This will launch Platon Code's backend on your machine as well as the local web app to control your agents.
 
-Tip: Use `npx platon@latest --help` for the full CLI reference.
+Tip: Use `npx platon-code@latest --help` for the full CLI reference.
 
 ### Desktop app
 

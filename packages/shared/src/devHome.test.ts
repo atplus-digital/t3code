@@ -95,7 +95,7 @@ describe("resolveGitWorktreePath", () => {
 });
 
 describe("resolveWorktreePlatonHome", () => {
-  it.effect("answers with .t3 before the dev runner creates it", () =>
+  it.effect("answers with .platon before the dev runner creates it", () =>
     Effect.gen(function* () {
       const { root, nested } = yield* makeRepo("worktree");
       const home = yield* resolveWorktreePlatonHome(nested);

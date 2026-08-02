@@ -58,7 +58,7 @@ private final class ComposerTextAttachment: NSTextAttachment {
 }
 
 private final class ComposerTextView: UITextView {
-  private static let pastedImageDirectoryName = "t3-composer-paste"
+  private static let pastedImageDirectoryName = "platon-composer-paste"
   private static let stalePastedImageAge: TimeInterval = 60 * 60
 
   var onPasteImages: (([String]) -> Void)?

@@ -57,7 +57,7 @@ unknown migration is blocked. Remote updates never migrate or downgrade a databa
 This deliberately means any release containing a migration requires a local service update:
 
 ```sh
-npx platon@<version> service update
+npx platon-code@<version> service update
 ```
 
 The local command stops the unit, selects the new launcher and exact runtime, then restarts the

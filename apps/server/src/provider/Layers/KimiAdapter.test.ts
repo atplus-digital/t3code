@@ -19,7 +19,7 @@ import {
   ThreadId,
   TurnId,
   type ProviderRuntimeEvent,
-} from "@t3tools/contracts";
+} from "@platon/contracts";
 
 import { ServerConfig } from "../../config.ts";
 import { kimiPromptSettlementBelongsToContext, makeKimiAdapter } from "./KimiAdapter.ts";
@@ -79,7 +79,7 @@ async function makeMockKimiWrapper(extraEnv?: Record<string, string>) {
 }
 
 const kimiAdapterTestLayer = ServerConfig.layerTest(process.cwd(), {
-  prefix: "t3code-kimi-adapter-test-",
+  prefix: "platon-code-kimi-adapter-test-",
 }).pipe(Layer.provideMerge(NodeServices.layer));
 
 const makeTestAdapter = (binaryPath: string, options?: Parameters<typeof makeKimiAdapter>[1]) =>

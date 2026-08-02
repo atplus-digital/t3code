@@ -37,7 +37,7 @@ import {
   ProjectId,
   ProviderInstanceId,
   ThreadId,
-} from "@t3tools/contracts";
+} from "@platon/contracts";
 
 import {
   DEFAULT_INTERACTION_MODE,

@@ -9,22 +9,24 @@ import {
 } from "./codexLaunchArgs.ts";
 
 describe("resolveCodexLaunchArgs", () => {
-  it("uses T3CODE_CODEX_LAUNCH_ARGS before configured settings", () => {
+  it("uses PLATON_CODE_CODEX_LAUNCH_ARGS before configured settings", () => {
     NodeAssert.equal(
-      resolveCodexLaunchArgs(" --strict-config ", { T3CODE_CODEX_LAUNCH_ARGS: "--enable foo" }),
+      resolveCodexLaunchArgs(" --strict-config ", {
+        PLATON_CODE_CODEX_LAUNCH_ARGS: "--enable foo",
+      }),
       "--enable foo",
     );
   });
 
-  it("uses configured settings when T3CODE_CODEX_LAUNCH_ARGS is empty", () => {
+  it("uses configured settings when PLATON_CODE_CODEX_LAUNCH_ARGS is empty", () => {
     NodeAssert.equal(
-      resolveCodexLaunchArgs(" --strict-config ", { T3CODE_CODEX_LAUNCH_ARGS: "   " }),
+      resolveCodexLaunchArgs(" --strict-config ", { PLATON_CODE_CODEX_LAUNCH_ARGS: "   " }),
       "--strict-config",
     );
   });
 
   it("ignores whitespace-only environment values", () => {
-    NodeAssert.equal(resolveCodexLaunchArgs("", { T3CODE_CODEX_LAUNCH_ARGS: "   " }), "");
+    NodeAssert.equal(resolveCodexLaunchArgs("", { PLATON_CODE_CODEX_LAUNCH_ARGS: "   " }), "");
   });
 });
 

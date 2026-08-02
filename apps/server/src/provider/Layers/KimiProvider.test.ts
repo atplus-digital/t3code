@@ -8,7 +8,7 @@ import * as Effect from "effect/Effect";
 import * as FileSystem from "effect/FileSystem";
 import * as Path from "effect/Path";
 import * as Schema from "effect/Schema";
-import { KimiSettings } from "@t3tools/contracts";
+import { KimiSettings } from "@platon/contracts";
 
 import { buildInitialKimiProviderSnapshot, checkKimiProviderStatus } from "./KimiProvider.ts";
 
@@ -97,7 +97,7 @@ it.layer(NodeServices.layer)("checkKimiProviderStatus", (it) => {
         Effect.gen(function* () {
           const fs = yield* FileSystem.FileSystem;
           const path = yield* Path.Path;
-          const dir = yield* fs.makeTempDirectoryScoped({ prefix: "t3code-kimi-version-" });
+          const dir = yield* fs.makeTempDirectoryScoped({ prefix: "platon-code-kimi-version-" });
           const kimiPath = yield* writeFakeKimiBinary(
             fs,
             dir,
@@ -130,7 +130,7 @@ it.layer(NodeServices.layer)("checkKimiProviderStatus", (it) => {
         Effect.gen(function* () {
           const fs = yield* FileSystem.FileSystem;
           const path = yield* Path.Path;
-          const dir = yield* fs.makeTempDirectoryScoped({ prefix: "t3code-kimi-success-" });
+          const dir = yield* fs.makeTempDirectoryScoped({ prefix: "platon-code-kimi-success-" });
           const kimiPath = yield* writeFakeKimiBinary(
             fs,
             dir,

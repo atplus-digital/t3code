@@ -1,6 +1,6 @@
 # Server Update Architecture
 
-> For maintainers. Using T3 Code? See [docs/user](../user/).
+> For maintainers. Using Platon Code? See [docs/user](../user/).
 
 Remote server updates use one stable systemd launcher. Foreground CLI processes do not self-update,
 and a running server never edits its systemd unit or durable service state.
@@ -13,8 +13,8 @@ The service files under `<baseDir>/runtime` are:
 - `service-state.json`, the launcher's durable selection state;
 - `versions/<version>`, immutable exact-version npm installs.
 
-The launcher is the only runtime writer of `service-state.json`. `t3 service install` and
-`t3 service update` may replace the launcher and state while the unit is stopped. Server children
+The launcher is the only runtime writer of `service-state.json`. `platon service install` and
+`platon service update` may replace the launcher and state while the unit is stopped. Server children
 only communicate with the launcher over their inherited IPC channel.
 
 The state contains one active version and, at most, one update record:
@@ -57,7 +57,7 @@ unknown migration is blocked. Remote updates never migrate or downgrade a databa
 This deliberately means any release containing a migration requires a local service update:
 
 ```sh
-npx t3@<version> service update
+npx platon-code@<version> service update
 ```
 
 The local command stops the unit, selects the new launcher and exact runtime, then restarts the

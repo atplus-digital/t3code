@@ -1,4 +1,4 @@
-import type { DesktopDiscoveredSshHost } from "@t3tools/contracts";
+import type { DesktopDiscoveredSshHost } from "@platon/contracts";
 import * as Cause from "effect/Cause";
 import { AtomRegistry } from "effect/unstable/reactivity";
 import * as AsyncResult from "effect/unstable/reactivity/AsyncResult";

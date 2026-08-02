@@ -1,15 +1,17 @@
 export type LoopbackAuthorizationStage = "dev" | "nightly" | "latest";
 
-declare const __T3CODE_BUILD_CHANNEL__: "nightly" | "latest" | undefined;
+declare const __PLATON_CODE_BUILD_CHANNEL__: "nightly" | "latest" | undefined;
 
 export function resolveLoopbackAuthorizationStage(): LoopbackAuthorizationStage {
-  return typeof __T3CODE_BUILD_CHANNEL__ === "undefined" ? "dev" : __T3CODE_BUILD_CHANNEL__;
+  return typeof __PLATON_CODE_BUILD_CHANNEL__ === "undefined"
+    ? "dev"
+    : __PLATON_CODE_BUILD_CHANNEL__;
 }
 
 const stageBrands = {
-  dev: "T3 Code (Dev)",
-  nightly: "T3 Code (Nightly)",
-  latest: "T3 Code",
+  dev: "Platon Code (Dev)",
+  nightly: "Platon Code (Nightly)",
+  latest: "Platon Code",
 } as const satisfies Record<LoopbackAuthorizationStage, string>;
 
 export function renderLoopbackAuthorizationCompleteHtml(
@@ -23,7 +25,7 @@ export function renderLoopbackAuthorizationCompleteHtml(
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <title>T3 Connect authorization complete</title>
+    <title>Platon Connect authorization complete</title>
     <style>
       :root {
         color-scheme: light dark;
@@ -147,7 +149,7 @@ export function renderLoopbackAuthorizationCompleteHtml(
       <section class="content">
         <p class="eyebrow">Browser authorization complete</p>
         <h1>You're connected</h1>
-        <p class="description">Return to your terminal to finish setting up T3 Connect. You can close this window.</p>
+        <p class="description">Return to your terminal to finish setting up Platon Connect. You can close this window.</p>
       </section>
     </main>
   </body>

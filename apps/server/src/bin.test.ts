@@ -11,8 +11,8 @@ import {
   EnvironmentOrchestrationHttpApi,
   ProviderInstanceId,
   ThreadId,
-} from "@t3tools/contracts";
-import * as NetService from "@t3tools/shared/Net";
+} from "@platon/contracts";
+import * as NetService from "@platon/shared/Net";
 import { assert, it } from "@effect/vitest";
 import * as Effect from "effect/Effect";
 import * as DateTime from "effect/DateTime";
@@ -75,7 +75,7 @@ const makeCliTestServerConfig = (baseDir: string) =>
       otlpTracesUrl: undefined,
       otlpMetricsUrl: undefined,
       otlpExportIntervalMs: 10_000,
-      otlpServiceName: "t3-server",
+      otlpServiceName: "platon-server",
       mode: "web",
       port: 0,
       host: "127.0.0.1",
@@ -195,19 +195,19 @@ it.layer(NodeServices.layer)("bin cli parsing", (it) => {
         assert.fail(`Expected ShowHelp, got ${error._tag}`);
       }
       assert.deepEqual(error.commandPath, ["t3", "connect"]);
-      assert.include(error.errors[0]?.message ?? "", "missing T3 Connect public configuration");
+      assert.include(error.errors[0]?.message ?? "", "missing Platon Connect public configuration");
 
       const output = (yield* TestConsole.errorLines).join("\n");
       assert.include(output, "ERROR");
-      assert.include(output, "missing T3 Connect public configuration");
+      assert.include(output, "missing Platon Connect public configuration");
     }).pipe(Effect.provide(Layer.mergeAll(CliRuntimeLayer, TestConsole.layer))),
   );
 
-  it.effect("exposes service lifecycle commands without T3 Connect configuration", () =>
+  it.effect("exposes service lifecycle commands without Platon Connect configuration", () =>
     Effect.gen(function* () {
       const { output } = yield* captureStdout(runCli(["service", "--help"], noConnectCli));
 
-      assert.include(output, "Manage the T3 Code background service.");
+      assert.include(output, "Manage the Platon Code background service.");
       assert.include(output, "install");
       assert.include(output, "uninstall");
       assert.include(output, "update");
@@ -218,7 +218,7 @@ it.layer(NodeServices.layer)("bin cli parsing", (it) => {
   it.effect("reports fresh headless connect state without requiring local configuration", () =>
     Effect.gen(function* () {
       const baseDir = NodeFS.mkdtempSync(
-        NodePath.join(NodeOS.tmpdir(), "t3-cli-cloud-status-test-"),
+        NodePath.join(NodeOS.tmpdir(), "platon-cli-cloud-status-test-"),
       );
       const { output } = yield* captureStdout(
         runConnectCli(["connect", "status", "--base-dir", baseDir, "--json"]),
@@ -243,23 +243,26 @@ it.layer(NodeServices.layer)("bin cli parsing", (it) => {
   it.effect("reports actionable human-readable headless connect state", () =>
     Effect.gen(function* () {
       const baseDir = NodeFS.mkdtempSync(
-        NodePath.join(NodeOS.tmpdir(), "t3-cli-cloud-status-human-test-"),
+        NodePath.join(NodeOS.tmpdir(), "platon-cli-cloud-status-human-test-"),
       );
       const { output } = yield* captureStdout(
         runConnectCli(["connect", "status", "--base-dir", baseDir]),
       );
 
-      assert.include(output, "T3 Connect\n  Exposure: disabled");
+      assert.include(output, "Platon Connect\n  Exposure: disabled");
       assert.include(output, "  Authorization: missing");
       assert.include(output, "  Environment link: not provisioned");
-      assert.include(output, "Next: Run `t3 connect link` to authorize and enable T3 Connect.");
+      assert.include(
+        output,
+        "Next: Run `platon connect link` to authorize and enable Platon Connect.",
+      );
     }),
   );
 
   it.effect("accepts the --headless login override without enabling access", () =>
     Effect.gen(function* () {
       const baseDir = NodeFS.mkdtempSync(
-        NodePath.join(NodeOS.tmpdir(), "t3-cli-cloud-login-test-"),
+        NodePath.join(NodeOS.tmpdir(), "platon-cli-cloud-login-test-"),
       );
       const { secretsDir } = yield* ServerConfig.deriveServerPaths(baseDir, undefined);
       NodeFS.mkdirSync(secretsDir, { recursive: true });
@@ -294,20 +297,20 @@ it.layer(NodeServices.layer)("bin cli parsing", (it) => {
   it.effect("disables headless connect without a running server", () =>
     Effect.gen(function* () {
       const baseDir = NodeFS.mkdtempSync(
-        NodePath.join(NodeOS.tmpdir(), "t3-cli-cloud-unlink-test-"),
+        NodePath.join(NodeOS.tmpdir(), "platon-cli-cloud-unlink-test-"),
       );
       const { output } = yield* captureStdout(
         runConnectCli(["connect", "unlink", "--base-dir", baseDir]),
       );
 
-      assert.equal(output, "T3 Connect is disabled locally.");
+      assert.equal(output, "Platon Connect is disabled locally.");
     }),
   );
 
   it.effect("logs out of headless connect and removes the stored CLI authorization", () =>
     Effect.gen(function* () {
       const baseDir = NodeFS.mkdtempSync(
-        NodePath.join(NodeOS.tmpdir(), "t3-cli-cloud-logout-test-"),
+        NodePath.join(NodeOS.tmpdir(), "platon-cli-cloud-logout-test-"),
       );
       const { secretsDir } = yield* ServerConfig.deriveServerPaths(baseDir, undefined);
       const tokenPath = NodePath.join(secretsDir, "cloud-cli-oauth-token.bin");
@@ -320,7 +323,7 @@ it.layer(NodeServices.layer)("bin cli parsing", (it) => {
 
       assert.equal(
         output,
-        "Signed out of T3 Connect locally.\nThe background service is managed separately with `t3 service`.",
+        "Signed out of Platon Connect locally.\nThe background service is managed separately with `platon service`.",
       );
       assert.isFalse(NodeFS.existsSync(tokenPath));
     }),
@@ -329,7 +332,7 @@ it.layer(NodeServices.layer)("bin cli parsing", (it) => {
   it.effect("executes auth pairing subcommands and redacts secrets from list output", () =>
     Effect.gen(function* () {
       const baseDir = NodeFS.mkdtempSync(
-        NodePath.join(NodeOS.tmpdir(), "t3-cli-auth-pairing-test-"),
+        NodePath.join(NodeOS.tmpdir(), "platon-cli-auth-pairing-test-"),
       );
 
       const createdOutput = yield* captureStdout(
@@ -361,7 +364,7 @@ it.layer(NodeServices.layer)("bin cli parsing", (it) => {
   it.effect("executes auth session subcommands and redacts secrets from list output", () =>
     Effect.gen(function* () {
       const baseDir = NodeFS.mkdtempSync(
-        NodePath.join(NodeOS.tmpdir(), "t3-cli-auth-session-test-"),
+        NodePath.join(NodeOS.tmpdir(), "platon-cli-auth-session-test-"),
       );
 
       const issuedOutput = yield* captureStdout(
@@ -438,10 +441,10 @@ it.layer(NodeServices.layer)("bin cli parsing", (it) => {
   it.effect("adds, renames, and removes projects offline through the orchestration engine", () =>
     Effect.gen(function* () {
       const baseDir = NodeFS.mkdtempSync(
-        NodePath.join(NodeOS.tmpdir(), "t3-cli-projects-offline-test-"),
+        NodePath.join(NodeOS.tmpdir(), "platon-cli-projects-offline-test-"),
       );
       const workspaceRoot = NodeFS.mkdtempSync(
-        NodePath.join(NodeOS.tmpdir(), "t3-cli-projects-workspace-"),
+        NodePath.join(NodeOS.tmpdir(), "platon-cli-projects-workspace-"),
       );
 
       yield* runCliWithRuntime([
@@ -486,10 +489,10 @@ it.layer(NodeServices.layer)("bin cli parsing", (it) => {
   it.effect("force removes projects that still contain threads", () =>
     Effect.gen(function* () {
       const baseDir = NodeFS.mkdtempSync(
-        NodePath.join(NodeOS.tmpdir(), "t3-cli-projects-force-remove-test-"),
+        NodePath.join(NodeOS.tmpdir(), "platon-cli-projects-force-remove-test-"),
       );
       const workspaceRoot = NodeFS.mkdtempSync(
-        NodePath.join(NodeOS.tmpdir(), "t3-cli-projects-force-remove-workspace-"),
+        NodePath.join(NodeOS.tmpdir(), "platon-cli-projects-force-remove-workspace-"),
       );
 
       yield* runCliWithRuntime(["project", "add", workspaceRoot, "--base-dir", baseDir]);
@@ -543,10 +546,10 @@ it.layer(NodeServices.layer)("bin cli parsing", (it) => {
   it.effect("routes project commands through a running server when runtime state is present", () =>
     Effect.gen(function* () {
       const baseDir = NodeFS.mkdtempSync(
-        NodePath.join(NodeOS.tmpdir(), "t3-cli-projects-live-test-"),
+        NodePath.join(NodeOS.tmpdir(), "platon-cli-projects-live-test-"),
       );
       const workspaceRoot = NodeFS.mkdtempSync(
-        NodePath.join(NodeOS.tmpdir(), "t3-cli-projects-live-workspace-"),
+        NodePath.join(NodeOS.tmpdir(), "platon-cli-projects-live-workspace-"),
       );
 
       yield* withLiveProjectCliServer(baseDir, () =>
@@ -575,7 +578,7 @@ it.layer(NodeServices.layer)("bin cli parsing", (it) => {
   it.effect("rejects dev-url on project commands", () =>
     Effect.gen(function* () {
       const workspaceRoot = NodeFS.mkdtempSync(
-        NodePath.join(NodeOS.tmpdir(), "t3-cli-projects-unknown-option-workspace-"),
+        NodePath.join(NodeOS.tmpdir(), "platon-cli-projects-unknown-option-workspace-"),
       );
       const error = yield* runCliWithRuntime([
         "project",

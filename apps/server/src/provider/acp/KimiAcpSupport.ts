@@ -2,7 +2,7 @@ import {
   type KimiSettings,
   type ProviderOptionSelection,
   ProviderDriverKind,
-} from "@t3tools/contracts";
+} from "@platon/contracts";
 import * as Crypto from "effect/Crypto";
 import * as Effect from "effect/Effect";
 import * as Layer from "effect/Layer";
@@ -10,7 +10,7 @@ import * as Scope from "effect/Scope";
 import * as ChildProcessSpawner from "effect/unstable/process/ChildProcessSpawner";
 import * as EffectAcpErrors from "effect-acp/errors";
 import type * as EffectAcpSchema from "effect-acp/schema";
-import { getProviderOptionStringSelectionValue, normalizeModelSlug } from "@t3tools/shared/model";
+import { getProviderOptionStringSelectionValue, normalizeModelSlug } from "@platon/shared/model";
 
 import * as AcpSessionRuntime from "./AcpSessionRuntime.ts";
 import { collectSessionConfigOptionValues, findSessionConfigOption } from "./AcpRuntimeModel.ts";

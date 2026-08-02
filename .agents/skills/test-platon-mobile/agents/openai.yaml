@@ -1,0 +1,4 @@
+interface:
+  display_name: "Test T3 Mobile"
+  short_description: "Test Platon Code on iOS or Android"
+  default_prompt: "Use $test-platon-mobile to launch Platon Code against an isolated backend and verify the affected flow on an available simulator or emulator."

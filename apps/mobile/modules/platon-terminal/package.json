@@ -1,0 +1,17 @@
+{
+  "name": "@platon/mobile-terminal-native",
+  "version": "0.0.0",
+  "private": true,
+  "expo-module": {
+    "ios": {
+      "modules": [
+        "PlatonTerminalModule"
+      ]
+    },
+    "android": {
+      "modules": [
+        "expo.modules.platonterminal.PlatonTerminalModule"
+      ]
+    }
+  }
+}

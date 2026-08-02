@@ -5,7 +5,7 @@ import * as Fiber from "effect/Fiber";
 import * as Schema from "effect/Schema";
 import * as TestClock from "effect/testing/TestClock";
 
-import { EnvironmentAuthInvalidError } from "@t3tools/contracts";
+import { EnvironmentAuthInvalidError } from "@platon/contracts";
 import {
   bootstrapRemoteBearerSession,
   exchangeRemoteDpopAccessToken,
@@ -147,7 +147,7 @@ describe("remote environment authorization", () => {
         credential: "one-time-credential",
         dpopProof: "token-proof",
         clientMetadata: {
-          label: "T3 Code Mobile",
+          label: "Platon Code Mobile",
           deviceType: "mobile",
           os: "iOS",
         },
@@ -195,7 +195,7 @@ describe("remote environment authorization", () => {
         httpBaseUrl: "https://remote.example.com/",
         credential: "pairing-token",
         clientMetadata: {
-          label: "T3 Code Mobile",
+          label: "Platon Code Mobile",
           deviceType: "mobile",
           os: "iOS",
         },
@@ -263,7 +263,7 @@ describe("remote environment authorization", () => {
               policy: "remote-reachable",
               bootstrapMethods: ["one-time-token"],
               sessionMethods: ["browser-session-cookie", "bearer-access-token"],
-              sessionCookieName: "t3_session",
+              sessionCookieName: "platon_session",
             },
             scopes: [
               "orchestration:read",
@@ -318,7 +318,7 @@ describe("remote environment authorization", () => {
       });
 
       expectFetchCall(fetch.calls, 1, {
-        url: "https://remote.example.com/.well-known/t3/environment",
+        url: "https://remote.example.com/.well-known/platon/environment",
         method: "GET",
       });
       expectFetchCall(fetch.calls, 2, {
@@ -347,7 +347,7 @@ describe("remote environment authorization", () => {
             policy: "remote-reachable",
             bootstrapMethods: ["one-time-token"],
             sessionMethods: ["dpop-access-token"],
-            sessionCookieName: "t3_session",
+            sessionCookieName: "platon_session",
           },
           sessionMethod: "dpop-access-token",
           scopes: [
@@ -391,7 +391,7 @@ describe("remote environment authorization", () => {
 
       expect(error).toBeInstanceOf(RemoteEnvironmentAuthTimeoutError);
       expect(error.message).toBe(
-        "Remote environment endpoint http://remote.example.com/.well-known/t3/environment timed out after 25ms.",
+        "Remote environment endpoint http://remote.example.com/.well-known/platon/environment timed out after 25ms.",
       );
     }).pipe(Effect.provide(TestClock.layer())),
   );

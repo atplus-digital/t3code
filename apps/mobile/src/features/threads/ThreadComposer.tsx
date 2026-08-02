@@ -6,14 +6,14 @@ import type {
   OrchestrationThreadShell,
   ProviderInteractionMode,
   RuntimeMode,
-  ServerConfig as T3ServerConfig,
-} from "@t3tools/contracts";
+  ServerConfig as PlatonServerConfig,
+} from "@platon/contracts";
 import {
   detectComposerTrigger,
   replaceTextRange,
   serializeComposerFileLink,
   type ComposerTrigger,
-} from "@t3tools/shared/composerTrigger";
+} from "@platon/shared/composerTrigger";
 import type { ReactNode } from "react";
 import { memo, useCallback, useEffect, useMemo, useRef, useState, type RefObject } from "react";
 import {
@@ -60,7 +60,7 @@ import {
   insertRankedSearchResult,
   normalizeSearchQuery,
   scoreQueryMatch,
-} from "@t3tools/shared/searchRanking";
+} from "@platon/shared/searchRanking";
 import {
   applyProviderOptionMenuEvent,
   buildProviderOptionMenuActions,
@@ -98,7 +98,7 @@ export interface ThreadComposerProps {
    */
   readonly threadSyncPhase?: "loading" | "syncing" | null;
   readonly selectedThread: OrchestrationThreadShell;
-  readonly serverConfig: T3ServerConfig | null;
+  readonly serverConfig: PlatonServerConfig | null;
   readonly queueCount: number;
   readonly activeThreadBusy: boolean;
   readonly environmentId: EnvironmentId;
@@ -526,7 +526,7 @@ export const ThreadComposer = memo(function ThreadComposer(props: ThreadComposer
       // contend with the queued-message feedback on the tap frame.
       armAgentAwarenessLiveActivityForLocalWork({
         threadTitle: props.selectedThread.title,
-        projectTitle: props.environmentLabel ?? "T3 Code",
+        projectTitle: props.environmentLabel ?? "Platon Code",
       });
     } finally {
       inFlightThreadIdsRef.current.delete(threadKey);

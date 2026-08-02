@@ -9,9 +9,9 @@ import { it } from "@effect/vitest";
 import * as Effect from "effect/Effect";
 import * as Layer from "effect/Layer";
 import * as Schema from "effect/Schema";
-import { createModelSelection } from "@t3tools/shared/model";
+import { createModelSelection } from "@platon/shared/model";
 import { expect } from "vite-plus/test";
-import { KimiSettings, ProviderInstanceId } from "@t3tools/contracts";
+import { KimiSettings, ProviderInstanceId } from "@platon/contracts";
 
 import * as ServerConfig from "../config.ts";
 import * as TextGeneration from "./TextGeneration.ts";
@@ -24,7 +24,7 @@ const __dirname = NodePath.dirname(NodeURL.fileURLToPath(import.meta.url));
 const mockAgentPath = NodePath.join(__dirname, "../../scripts/acp-mock-agent.ts");
 
 const KimiTextGenerationTestLayer = ServerConfig.ServerConfig.layerTest(process.cwd(), {
-  prefix: "t3code-kimi-text-generation-test-",
+  prefix: "platon-code-kimi-text-generation-test-",
 }).pipe(Layer.provideMerge(NodeServices.layer));
 
 function makeAcpKimiWrapper(dir: string, env: Record<string, string>): string {
@@ -81,7 +81,9 @@ function withFakeAcpKimi<A, E, R>(
   effectFn: (textGeneration: TextGeneration.TextGeneration["Service"]) => Effect.Effect<A, E, R>,
 ) {
   return Effect.gen(function* () {
-    const tempDir = NodeFS.mkdtempSync(NodePath.join(NodeOS.tmpdir(), "t3code-kimi-text-acp-"));
+    const tempDir = NodeFS.mkdtempSync(
+      NodePath.join(NodeOS.tmpdir(), "platon-code-kimi-text-acp-"),
+    );
     yield* Effect.addFinalizer(() =>
       Effect.sync(() => {
         NodeFS.rmSync(tempDir, { recursive: true, force: true });
@@ -107,7 +109,7 @@ function readJsonRpcRequests(
 it.layer(KimiTextGenerationTestLayer)("KimiTextGeneration", (it) => {
   it.effect("uses ACP with disabled tool capabilities and forwards the requested model id", () => {
     const requestLogDir = NodeFS.mkdtempSync(
-      NodePath.join(NodeOS.tmpdir(), "t3code-kimi-text-log-"),
+      NodePath.join(NodeOS.tmpdir(), "platon-code-kimi-text-log-"),
     );
     const requestLogPath = NodePath.join(requestLogDir, "requests.ndjson");
 

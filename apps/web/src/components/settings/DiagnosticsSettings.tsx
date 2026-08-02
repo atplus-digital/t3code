@@ -11,13 +11,13 @@ import { useAtomValue } from "@effect/atom-react";
 import {
   isAtomCommandInterrupted,
   squashAtomCommandFailure,
-} from "@t3tools/client-runtime/state/runtime";
+} from "@platon/client-runtime/state/runtime";
 import { useCallback, useMemo, useState, type ReactNode } from "react";
 import type {
   ServerProcessDiagnosticsEntry,
   ServerProcessResourceHistorySummary,
   ServerProcessSignal,
-} from "@t3tools/contracts";
+} from "@platon/contracts";
 import * as DateTime from "effect/DateTime";
 import * as Option from "effect/Option";
 
@@ -936,7 +936,7 @@ export function DiagnosticsSettingsPanel() {
               type: "info",
               title: "Process already exited",
               description:
-                "The process is not a child of the T3 Server. It might already have exited.",
+                "The process is not a child of the Platon Server. It might already have exited.",
             });
             return;
           }

@@ -1,0 +1,9 @@
+{
+  "platforms": ["apple", "android"],
+  "apple": {
+    "modules": ["PlatonNativeControlsModule", "PlatonKeyboardCommandsModule"]
+  },
+  "android": {
+    "modules": ["expo.modules.platonnativecontrols.PlatonNativeControlsModule"]
+  }
+}

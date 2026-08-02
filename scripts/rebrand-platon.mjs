@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Fork rebrand: user-facing "Platon Code" / "Platon Connect" → "Platon Code" / "Platon Connect".
- * Leaves package scopes (@t3tools), env vars (T3CODE_*), paths (.t3), and CLI binary names (t3) alone.
+ * Leaves package scopes (@platon), env vars (PLATON_CODE_*), paths (.platon), and CLI binary names (t3) alone.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -11,7 +11,7 @@ const root = process.cwd();
 const SKIP_DIR_NAMES = new Set([
   "node_modules",
   ".git",
-  ".t3",
+  ".platon",
   "dist",
   "dist-electron",
   "coverage",

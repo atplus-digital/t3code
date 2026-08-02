@@ -1,14 +1,14 @@
 included:
-  - ios/T3Code
-  - modules/t3-composer-editor/ios
-  - modules/t3-native-controls/ios
-  - modules/t3-terminal/ios
-  - modules/t3-review-diff/ios
+  - ios/PlatonCode
+  - modules/platon-composer-editor/ios
+  - modules/platon-native-controls/ios
+  - modules/platon-terminal/ios
+  - modules/platon-review-diff/ios
 
 excluded:
   - ios/Pods
   - ios/build
-  - modules/t3-terminal/Vendor
+  - modules/platon-terminal/Vendor
 
 reporter: xcode
 

@@ -11,34 +11,34 @@ At least one provider CLI, installed and authenticated. See [Providers](#provide
 ## Run Without Installing
 
 ```bash
-npx t3@latest
+npx platon@latest
 ```
 
 This starts the Platon Code server on your machine and opens the local web app. Use
-`npx t3@latest --help` for the full CLI reference.
+`npx platon@latest --help` for the full CLI reference.
 
 ## Desktop App
 
 Download the latest release from
-[GitHub Releases](https://github.com/pingdotgg/t3code/releases), or install from a package
+[GitHub Releases](https://github.com/pingdotgg/platon-code/releases), or install from a package
 registry.
 
 Windows:
 
 ```bash
-winget install T3Tools.T3Code
+winget install Platon.PlatonCode
 ```
 
 macOS:
 
 ```bash
-brew install --cask t3-code
+brew install --cask platon-code
 ```
 
 Arch Linux:
 
 ```bash
-yay -S t3code-bin
+yay -S platon-code-bin
 ```
 
 ## Providers

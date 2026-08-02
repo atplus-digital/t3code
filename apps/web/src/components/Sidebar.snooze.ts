@@ -1,10 +1,10 @@
-import { snoozeWakeLabel } from "@t3tools/client-runtime/state/thread-settled";
+import { snoozeWakeLabel } from "@platon/client-runtime/state/thread-settled";
 import { parseTimestampDate } from "../timestampFormat";
 
 export {
   resolveSnoozePresets,
   type SnoozePreset,
-} from "@t3tools/client-runtime/state/thread-settled";
+} from "@platon/client-runtime/state/thread-settled";
 export { snoozeWakeLabel };
 
 const DAY_MS = 24 * 60 * 60 * 1_000;

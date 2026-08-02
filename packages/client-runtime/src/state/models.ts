@@ -6,7 +6,7 @@ import type {
   OrchestrationThread,
   OrchestrationThreadShell,
   ThreadId,
-} from "@t3tools/contracts";
+} from "@platon/contracts";
 
 export interface EnvironmentProject extends OrchestrationProjectShell {
   readonly environmentId: EnvironmentId;

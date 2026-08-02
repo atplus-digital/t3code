@@ -8,25 +8,25 @@ boots and keeps running after you log out.
 Install it with the latest Platon Code release:
 
 ```sh
-npx t3@latest service install
+npx platon@latest service install
 ```
 
 Check whether it is installed:
 
 ```sh
-npx t3@latest service status
+npx platon@latest service status
 ```
 
 Update or repair it:
 
 ```sh
-npx t3@latest service update
+npx platon@latest service update
 ```
 
 Stop it and remove it from startup:
 
 ```sh
-npx t3@latest service uninstall
+npx platon@latest service uninstall
 ```
 
 Updating restarts Platon Code briefly. Let active agent work and terminal commands finish first.
@@ -40,7 +40,7 @@ that change the database must be installed with the local `service update` comma
 Platon Connect may offer to install the service during setup so the host stays reachable after you log
 out. This is only an onboarding shortcut: the service and Platon Connect are managed separately.
 
-Signing out of Platon Connect does not remove the service. Use `t3 service uninstall` when you no longer
+Signing out of Platon Connect does not remove the service. Use `platon service uninstall` when you no longer
 want Platon Code to start in the background.
 
 The background service currently requires Linux with systemd.

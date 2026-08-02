@@ -4,7 +4,7 @@ import {
   ProjectId,
   ThreadId,
   type OrchestrationEvent,
-} from "@t3tools/contracts";
+} from "@platon/contracts";
 import { expect, it } from "@effect/vitest";
 import * as Effect from "effect/Effect";
 

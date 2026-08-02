@@ -1,0 +1,9 @@
+{
+  "platforms": ["apple", "android"],
+  "apple": {
+    "modules": ["PlatonComposerEditorModule"]
+  },
+  "android": {
+    "modules": ["expo.modules.platoncomposereditor.PlatonComposerEditorModule"]
+  }
+}

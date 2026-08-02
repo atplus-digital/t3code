@@ -1,6 +1,6 @@
 # Platon Code
 
-**Platon Code** is Platon’s agent harness control surface — a fork of [T3 Code](https://github.com/pingdotgg/t3code) rebranded and extended for our team.
+**Platon Code** is Platon’s agent harness control surface — a fork of [T3 Code](https://github.com/pingdotgg/platon-code) rebranded and extended for our team.
 
 Drive coding agents (Codex, Claude Code, Cursor, Grok Build, Kimi Code CLI, OpenCode) from web, desktop, and mobile, with remote-ready WebSocket hosting.
 
@@ -23,33 +23,33 @@ Brand marks live under [`assets/platon/`](./assets/platon/) and are applied acro
 The easiest way to test Platon Code is to run the server in your terminal (requires Node.js 22.16+, 23.11+, or 24.10+):
 
 ```bash
-npx t3@latest
+npx platon@latest
 ```
 
 This will launch Platon Code's backend on your machine as well as the local web app to control your agents.
 
-Tip: Use `npx t3@latest --help` for the full CLI reference.
+Tip: Use `npx platon@latest --help` for the full CLI reference.
 
 ### Desktop app
 
-Install the latest version of the desktop app from [GitHub Releases](https://github.com/pingdotgg/t3code/releases), or from your favorite package registry:
+Install the latest version of the desktop app from [GitHub Releases](https://github.com/pingdotgg/platon-code/releases), or from your favorite package registry:
 
 #### Windows (`winget`)
 
 ```bash
-winget install T3Tools.T3Code
+winget install Platon.PlatonCode
 ```
 
 #### macOS (Homebrew)
 
 ```bash
-brew install --cask t3-code
+brew install --cask platon-code
 ```
 
 #### Arch Linux (AUR)
 
 ```bash
-yay -S t3code-bin
+yay -S platon-code-bin
 ```
 
 ## Some notes

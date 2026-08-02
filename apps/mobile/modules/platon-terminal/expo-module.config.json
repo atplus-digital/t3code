@@ -1,0 +1,10 @@
+{
+  "platforms": ["apple", "android"],
+  "apple": {
+    "modules": ["PlatonTerminalModule"],
+    "podspecPath": "PlatonTerminalNative.podspec"
+  },
+  "android": {
+    "modules": ["expo.modules.platonterminal.PlatonTerminalModule"]
+  }
+}

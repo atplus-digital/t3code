@@ -6,7 +6,7 @@ import {
   KimiSettings,
   OpenCodeSettings,
   ProviderDriverKind,
-} from "@t3tools/contracts";
+} from "@platon/contracts";
 import type * as Schema from "effect/Schema";
 import {
   ClaudeAI,

@@ -1,6 +1,6 @@
-import { EnvironmentId } from "@t3tools/contracts";
-import { stripPairingTokenFromUrl } from "@t3tools/shared/remote";
-import { type EnvironmentConnectionPhase } from "@t3tools/client-runtime/connection";
+import { EnvironmentId } from "@platon/contracts";
+import { stripPairingTokenFromUrl } from "@platon/shared/remote";
+import { type EnvironmentConnectionPhase } from "@platon/client-runtime/connection";
 
 export { authClientMetadata } from "./authClientMetadata";
 

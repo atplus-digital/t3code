@@ -1,6 +1,6 @@
-import type { ArchivedSnapshotEntry } from "@t3tools/client-runtime/state/threads";
-import type { OrchestrationProjectShell, OrchestrationThreadShell } from "@t3tools/contracts";
-import { EnvironmentId, ProjectId, ProviderInstanceId, ThreadId } from "@t3tools/contracts";
+import type { ArchivedSnapshotEntry } from "@platon/client-runtime/state/threads";
+import type { OrchestrationProjectShell, OrchestrationThreadShell } from "@platon/contracts";
+import { EnvironmentId, ProjectId, ProviderInstanceId, ThreadId } from "@platon/contracts";
 import { describe, expect, it } from "vite-plus/test";
 
 import { buildArchivedThreadGroups } from "./archivedThreadList";

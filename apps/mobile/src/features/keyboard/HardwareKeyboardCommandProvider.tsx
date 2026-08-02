@@ -1,7 +1,7 @@
 import { StackActions, useNavigation } from "@react-navigation/native";
 import { useCallback, useMemo, useSyncExternalStore, type PropsWithChildren } from "react";
 
-import { T3KeyboardCommands } from "../../native/T3KeyboardCommands";
+import { PlatonKeyboardCommands } from "../../native/PlatonKeyboardCommands";
 import {
   dispatchHardwareKeyboardCommand,
   getHardwareKeyboardCommandRegistrationVersion,
@@ -66,8 +66,8 @@ export function HardwareKeyboardCommandProvider({
   );
 
   return (
-    <T3KeyboardCommands enabledCommands={enabledCommands} onCommand={onCommand}>
+    <PlatonKeyboardCommands enabledCommands={enabledCommands} onCommand={onCommand}>
       {children}
-    </T3KeyboardCommands>
+    </PlatonKeyboardCommands>
   );
 }

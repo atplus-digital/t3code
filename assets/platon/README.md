@@ -10,7 +10,7 @@ User-facing product name: **Platon Code**.
 
 Technical identifiers intentionally retained for compatibility:
 
-- Package scope `@t3tools/*`
-- Env vars `T3CODE_*`
-- Data home `.t3` / `T3CODE_HOME`
-- CLI binary / npm name `t3` (until a dedicated Platon CLI publish exists)
+- Package scope `@platon/*`
+- Env vars `PLATON_CODE_*`
+- Data home `.platon` / `PLATON_CODE_HOME`
+- CLI binary / npm name `platon` (until a dedicated Platon CLI publish exists)

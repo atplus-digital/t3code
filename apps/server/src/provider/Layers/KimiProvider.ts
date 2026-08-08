@@ -39,9 +39,6 @@ const KIMI_PRESENTATION = {
   showInteractionModeToggle: false,
   requiresNewThreadForModelChange: true,
 } as const;
-const EMPTY_CAPABILITIES: ModelCapabilities = createModelCapabilities({
-  optionDescriptors: [],
-});
 
 /** Default Thinking levels when ACP discovery is unavailable (Kimi K3 family). */
 const DEFAULT_THINKING_CAPABILITIES: ModelCapabilities = createModelCapabilities({

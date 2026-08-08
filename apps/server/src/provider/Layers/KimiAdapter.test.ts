@@ -20,17 +20,17 @@ import {
   TurnId,
   type ProviderRuntimeEvent,
 } from "@t3tools/contracts";
+import { isHostWindows } from "@t3tools/shared/hostProcess";
 
 import { ServerConfig } from "../../config.ts";
 import { kimiPromptSettlementBelongsToContext, makeKimiAdapter } from "./KimiAdapter.ts";
 
 const decodeKimiSettings = Schema.decodeSync(KimiSettings);
-const isWin = process.platform === "win32";
 
 const __dirname = NodePath.dirname(NodeURL.fileURLToPath(import.meta.url));
 const mockAgentPath = NodePath.join(__dirname, "../../../scripts/acp-mock-agent.ts");
 
-async function makeMockKimiWrapper(extraEnv?: Record<string, string>) {
+async function makeMockKimiWrapper(isWin: boolean, extraEnv?: Record<string, string>) {
   const dir = await NodeFSP.mkdtemp(NodePath.join(NodeOS.tmpdir(), "kimi-acp-mock-"));
   const jsPath = NodePath.join(dir, "kimi.mjs");
   const envJson = JSON.stringify(extraEnv ?? {});
@@ -113,7 +113,8 @@ it.layer(kimiAdapterTestLayer)("KimiAdapterLive", (it) => {
   it.effect("starts a session and maps mock ACP prompt flow to runtime events", () =>
     Effect.gen(function* () {
       const threadId = ThreadId.make("kimi-mock-thread");
-      const wrapperPath = yield* Effect.promise(() => makeMockKimiWrapper());
+      const isWin = yield* isHostWindows;
+      const wrapperPath = yield* Effect.promise(() => makeMockKimiWrapper(isWin));
       const adapter = yield* makeTestAdapter(wrapperPath);
 
       const runtimeEvents: ProviderRuntimeEvent[] = [];
@@ -166,7 +167,8 @@ it.layer(kimiAdapterTestLayer)("KimiAdapterLive", (it) => {
 
   it.effect("rejects startSession without a cwd", () =>
     Effect.gen(function* () {
-      const wrapperPath = yield* Effect.promise(() => makeMockKimiWrapper());
+      const isWin = yield* isHostWindows;
+      const wrapperPath = yield* Effect.promise(() => makeMockKimiWrapper(isWin));
       const adapter = yield* makeTestAdapter(wrapperPath);
       const error = yield* Effect.flip(
         adapter.startSession({

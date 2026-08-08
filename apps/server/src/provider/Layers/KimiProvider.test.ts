@@ -9,19 +9,20 @@ import * as FileSystem from "effect/FileSystem";
 import * as Path from "effect/Path";
 import * as Schema from "effect/Schema";
 import { KimiSettings } from "@t3tools/contracts";
+import { isHostWindows } from "@t3tools/shared/hostProcess";
 
 import { buildInitialKimiProviderSnapshot, checkKimiProviderStatus } from "./KimiProvider.ts";
 
 const decodeKimiSettings = Schema.decodeSync(KimiSettings);
-const isWin = process.platform === "win32";
 
 function writeFakeKimiBinary(
-  fs: FileSystem.FileSystem["Service"],
+  fs: FileSystem.FileSystem,
   dir: string,
-  path: Path.Path["Service"],
+  path: Path.Path,
   scriptBody: string,
-): Effect.Effect<string> {
+) {
   return Effect.gen(function* () {
+    const isWin = yield* isHostWindows;
     const jsPath = path.join(dir, "kimi.mjs");
     yield* fs.writeFileString(jsPath, scriptBody);
     if (isWin) {
@@ -104,6 +105,7 @@ it.layer(NodeServices.layer)("checkKimiProviderStatus", (it) => {
             path,
             [
               "const args = process.argv.slice(2);",
+              // @effect-diagnostics-next-line preferSchemaOverJson:off
               `process.stderr.write(${JSON.stringify(secretStderr + "\\n")});`,
               "process.exit(2);",
               "",

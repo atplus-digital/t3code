@@ -10,6 +10,7 @@ import * as Effect from "effect/Effect";
 import * as Layer from "effect/Layer";
 import * as Schema from "effect/Schema";
 import { createModelSelection } from "@t3tools/shared/model";
+import { isHostWindows } from "@t3tools/shared/hostProcess";
 import { expect } from "vite-plus/test";
 import { KimiSettings, ProviderInstanceId } from "@t3tools/contracts";
 
@@ -18,7 +19,6 @@ import * as TextGeneration from "./TextGeneration.ts";
 import { makeKimiTextGeneration } from "./KimiTextGeneration.ts";
 
 const decodeKimiSettings = Schema.decodeSync(KimiSettings);
-const isWin = process.platform === "win32";
 
 const __dirname = NodePath.dirname(NodeURL.fileURLToPath(import.meta.url));
 const mockAgentPath = NodePath.join(__dirname, "../../scripts/acp-mock-agent.ts");
@@ -27,7 +27,7 @@ const KimiTextGenerationTestLayer = ServerConfig.ServerConfig.layerTest(process.
   prefix: "t3code-kimi-text-generation-test-",
 }).pipe(Layer.provideMerge(NodeServices.layer));
 
-function makeAcpKimiWrapper(dir: string, env: Record<string, string>): string {
+function makeAcpKimiWrapper(dir: string, env: Record<string, string>, isWin: boolean): string {
   const binDir = NodePath.join(dir, "bin");
   NodeFS.mkdirSync(binDir, { recursive: true });
   const jsPath = NodePath.join(binDir, "kimi.mjs");
@@ -87,7 +87,8 @@ function withFakeAcpKimi<A, E, R>(
         NodeFS.rmSync(tempDir, { recursive: true, force: true });
       }),
     );
-    const binaryPath = makeAcpKimiWrapper(tempDir, env);
+    const isWin = yield* isHostWindows;
+    const binaryPath = makeAcpKimiWrapper(tempDir, env, isWin);
     const config = decodeKimiSettings({ binaryPath });
     const textGeneration = yield* makeKimiTextGeneration(config);
     return yield* effectFn(textGeneration);
